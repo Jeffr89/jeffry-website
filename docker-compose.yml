@@ -1,0 +1,18 @@
+services:
+  jeffryit:
+    image: flashspys/nginx-static
+    container_name: gianfrancoschianchi
+    # ports:
+    #   - 8080:80
+    restart: always
+    labels:
+      caddy: www.gianfrancoschianchi.it, gianfrancoschianchi.it, jeffry.it, www.jeffry.it
+      caddy.reverse_proxy: "{{upstreams 80}}"
+    volumes:
+      - ./gs/:/static
+    networks:
+      - caddy
+
+networks:
+  caddy:
+    external: true
